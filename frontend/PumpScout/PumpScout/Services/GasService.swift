@@ -13,7 +13,7 @@ enum GasError: Error {
 
 @MainActor
 class GasService: ObservableObject {
-    private let base = "192.168.2.61:8000"
+    private let base = ""
 
     @Published var summary: GasSummary?
     @Published var isLoading = false
@@ -28,7 +28,7 @@ class GasService: ObservableObject {
         }
 
         do {
-            guard let refreshURL = URL(string: "http://\(base)/api/refresh") else {
+            guard let refreshURL = URL(string: "http://\(base)/refresh") else {
                 throw GasError.badURL
             }
 
