@@ -1,8 +1,8 @@
 <div align="center">
 
-#PumpScout
+# Thanks for checking out PumpScout!
 
-**Toronto gas price tracker — live prices, tomorrow's prediction, and a 7-day history, on your iPhone.**
+**Toronto's gas price tracker providing live prices, tomorrow's prediction, and a 7-day history, all on your iPhone.**
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -14,29 +14,25 @@
 
 ---
 
-## What is PumpScout?
-
-PumpScout is a **Toronto GTA gas price tracker** made up of two parts:
-
+## PumpScout
+PumpScout is a Toronto GTA gas price tracker made up of two parts:
 - A **Python / FastAPI backend** that scrapes live gas price data from [CityNews Toronto](https://toronto.citynews.ca/toronto-gta-gas-prices/), stores it in a local SQLite database, and serves it through a clean REST API.
-- A **native iOS app (Swift)** that calls the backend and displays the current price, tomorrow's predicted price, a buy/don't-buy recommendation, and a rolling 7-day price history.
+- A **native iOS app (Swift)** that calls the backend and displays the current price, tomorrow's predicted price, a buy/don't-buy recommendation, and a 7-day price history.
 
 Every time you hit refresh, the backend uses **Playwright** to render the CityNews page in a headless Chromium browser (needed because the gas data is JavaScript-rendered), parses the prediction and history table with **BeautifulSoup**, and upserts the results into SQLite.
 
 ---
 
-## Features
+## Current Features
 
-- 📈 **Live price** — today's Toronto average gas price in cents/litre
-- 🔮 **Tomorrow's prediction** — scraped directly from CityNews's forecast section
-- 🟢🟡🔴 **Buy signal** — compares today's price against the 7-day average and tells you whether it's a good time to fill up
-- 📅 **7-day history** — price trend for the past week
-- 💾 **Persistent storage** — SQLite database with upsert logic so re-scraping never creates duplicates
-
+- Live price of Toronto average gas price in cents/litre
+- Tomorrow's prediction from CityNews's forecast section
+- Buy signal based on today's price compared to  7-day average 
+- 7-day price trend for the past week
+- Persistent storage, SQLite database with upsert logic so re-scraping never creates duplicates
 ---
 
 ## Tech Stack
-
 | Layer | Tech |
 |---|---|
 | Backend framework | FastAPI |
@@ -44,8 +40,7 @@ Every time you hit refresh, the backend uses **Playwright** to render the CityNe
 | Database | SQLite3 (via Python stdlib) |
 | Data validation | Pydantic |
 | HTTP client | httpx |
-| Frontend | Swift (iOS) |
-
+| Frontend | SwiftUI (iOS) |
 ---
 
 ## Project Structure
@@ -64,13 +59,10 @@ PumpScout/
 └── frontend/
     └── PumpScout/         # Xcode project (Swift / SwiftUI)
 ```
-
 ---
 
 ## Backend Setup
-
 ### Prerequisites
-
 - Python 3.11+
 - pip
 
@@ -93,8 +85,7 @@ source venv/bin/activate
 # Activate it — Windows
 venv\Scripts\activate
 ```
-
-You should see `(venv)` in your terminal prompt.
+You should see (venv) in your terminal prompt.
 
 ### 3. Install dependencies
 
@@ -103,7 +94,6 @@ pip install -r requirements.txt
 ```
 
 ### 4. Install Playwright browsers
-
 Playwright needs to download a Chromium binary the first time:
 
 ```bash
@@ -111,17 +101,13 @@ playwright install chromium
 ```
 
 ### 5. Run the server
-
 ```bash
 uvicorn app.main:app --reload
 ```
-
 The API will be available at `http://127.0.0.1:8000`.
-
 ---
 
 ## API Endpoints
-
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/` | Health check |
@@ -130,7 +116,6 @@ The API will be available at `http://127.0.0.1:8000`.
 | `GET` | `/history` | Get the raw last 7 days of price snapshots |
 
 ### Example: refresh then fetch summary
-
 ```bash
 # 1. Scrape latest data
 curl -X POST http://127.0.0.1:8000/refresh
@@ -162,7 +147,7 @@ curl http://127.0.0.1:8000/summary
 
 1. Open `frontend/PumpScout/PumpScout.xcodeproj` in Xcode.
 2. Make sure the backend is running locally (see above).
-3. Update the base URL in the app to point to your machine's local IP (e.g. `http://192.168.x.x:8000`) if running on a physical device, or keep `http://127.0.0.1:8000` for the simulator.
+3. Update the base URL in the app to point to your machine's local IP (you can find this by running ipconfig in your terminal), if running on a physical device, or keep `http://127.0.0.1:8000` for the simulator.
 4. Build and run on your simulator or device.
 
 ---
