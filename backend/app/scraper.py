@@ -18,7 +18,7 @@ def _fetch_html_sync() -> str:
             locale="en-CA",
         )
         page = context.new_page()
-        page.goto("https://toronto.citynews.ca/toronto-gta-gas-prices/", wait_until="domcontentloaded")  # ← not networkidle
+        page.goto("https://toronto.citynews.ca/toronto-gta-gas-prices/", wait_until="domcontentloaded") 
         page.wait_for_selector("#gas_price_latest_container", timeout=15000)  # wait for the actual element
         html = page.content()
         browser.close()
@@ -34,8 +34,8 @@ async def scrape_citynews() -> dict[str, Any]:
     soup = BeautifulSoup(html, "html.parser")
 
     print("PAGE TITLE:", soup.title.string if soup.title else "No title")
-    print("HAS gas_price_latest_container:", soup.select_one("#gas_price_latest_container") is not None)  # ← ID selector
-    print("HAS page-table-body:", soup.select_one("table.page-table-body") is not None)  # ← correct class
+    print("HAS gas_price_latest_container:", soup.select_one("#gas_price_latest_container") is not None)
+    print("HAS page-table-body:", soup.select_one("table.page-table-body") is not None)
 
     prediction = parse_prediction_section(soup)
     history = parse_history_table(soup)

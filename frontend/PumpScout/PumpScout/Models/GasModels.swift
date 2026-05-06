@@ -8,7 +8,7 @@
 import Foundation
 
 struct GasSummary: Codable {
-    let currentPrice : Double
+    let currentPriceCents : Double
     let tomorrowPredictedPrice: Double
     let updatedAt: String
     let sevenDayHistory: [DailyGas]

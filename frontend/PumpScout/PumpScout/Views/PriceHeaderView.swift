@@ -43,7 +43,7 @@ struct PriceHeaderView: View {
                 .foregroundStyle(.secondary)
 
             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text(summary.currentPrice, format: .number.precision(.fractionLength(1)))
+                Text(summary.currentPriceCents, format: .number.precision(.fractionLength(1)))
                     .font(.system(size: 58, weight: .semibold, design: .default))
                     .foregroundStyle(.primary)
 
@@ -60,9 +60,10 @@ struct PriceHeaderView: View {
                 Spacer()
 
                 Text(summary.buyMessage)
+                
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(badgeText)
-                    .padding(.horizontal, 14)
+                    .padding(.horizontal, 18)
                     .padding(.vertical, 8)
                     .background(badgeBackground)
                     .clipShape(Capsule())
@@ -70,7 +71,7 @@ struct PriceHeaderView: View {
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(.white))
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(
             RoundedRectangle(cornerRadius: 18)

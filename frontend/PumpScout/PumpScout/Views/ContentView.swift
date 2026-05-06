@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(.systemGroupedBackground)
+                Color(.white)
                     .ignoresSafeArea()
 
                 if service.isLoading {
@@ -25,7 +25,7 @@ struct ContentView: View {
                     }
                 } else if let error = service.errorMessage {
                     VStack(spacing: 16) {
-                        Text("⚠️ Error")
+                        Text("Error")
                             .font(.title2)
 
                         Text(error)
@@ -50,14 +50,17 @@ struct ContentView: View {
                             } label: {
                                 Text("Refresh prices")
                                     .font(.headline)
+                                    .bold()
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 14)
+                                    
                             }
                             .buttonStyle(.bordered)
                             .tint(.primary)
+                        
 
-                            Text("Updated \(formattedUpdate(summary.updatedAt)) · Source: \(summary.source)")
-                                .font(.caption)
+                            Text("Updated \(formattedUpdate(summary.updatedAt))")
+                                .font(.caption).bold()
                                 .foregroundStyle(.tertiary)
                                 .padding(.top, 2)
                         }
@@ -72,7 +75,7 @@ struct ContentView: View {
                     Color.clear
                 }
             }
-            .navigationTitle("Toronto Gas")
+            .navigationTitle("PumpScout")
             .navigationBarTitleDisplayMode(.inline)
             .task {
                 await service.loadData()

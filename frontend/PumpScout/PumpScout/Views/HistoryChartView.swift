@@ -23,7 +23,7 @@ struct HistoryChartView: View {
         history.map(\.price).max() ?? 0
     }
 
-    // Wider fixed-looking range like the mockup so bars don’t look exaggerated
+    //Wider fixed-looking range like the mockup so bars don’t look exaggerated
     private var minPrice: Double {
         floor((low - 3) / 1) * 1
     }
@@ -60,6 +60,11 @@ struct HistoryChartView: View {
                     ? Color.blue
                     : Color.blue.opacity(0.35)
                 )
+                .annotation(position: .top) {
+                    Text("\(day.price, specifier: "%.1f")")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.primary)
+                }
             }
             .chartYScale(domain: minPrice...maxPrice)
             .chartYAxis(.hidden)
@@ -86,7 +91,7 @@ struct HistoryChartView: View {
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(.white))
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(
             RoundedRectangle(cornerRadius: 18)
