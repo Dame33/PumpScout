@@ -2,17 +2,7 @@
 
 # Thanks for checking out PumpScout!
 
-**Toronto's gas price tracker providing live prices, tomorrow's prediction, and a 7-day history, all on your iPhone.**
-
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Swift](https://img.shields.io/badge/Swift-5.9+-FA7343?style=flat-square&logo=swift&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![Playwright](https://img.shields.io/badge/Playwright-scraper-2EAD33?style=flat-square&logo=playwright&logoColor=white)
-
 </div>
-
----
 
 ## PumpScout
 PumpScout is a Toronto GTA gas price tracker made up of two parts:
