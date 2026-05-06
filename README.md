@@ -15,7 +15,7 @@ Every time you hit refresh, the backend uses **Playwright** to render the CityNe
 
 ## Current Features
 
-- Live price of Toronto average gas price in cents/litre
+- Live price of Toronto's average gas price in cents/litre
 - Tomorrow's prediction from CityNews's forecast section
 - Buy signal based on today's price compared to  7-day average 
 - 7-day price trend for the past week
