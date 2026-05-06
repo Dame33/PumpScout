@@ -81,9 +81,9 @@ def get_last_seven_days() ->list[sqlite3.Row]:
 
 def get_buy_message(current_price: float, seven_day_average: float):
     if current_price < seven_day_average:
-        return "Buy now — below weekly average", "green"
+        return "Good buy! Price below weekly average", "green"
     elif current_price > seven_day_average:
-        return "Wait — prices are above weekly average", "red"
+        return "Bad buy! Price above weekly average", "red"
     else:
         return "Average price today", "yellow"
 
