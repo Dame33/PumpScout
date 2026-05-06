@@ -79,31 +79,43 @@ def get_last_seven_days() ->list[sqlite3.Row]:
         connection.close()
     return list(reversed(rows))
 
+def get_buy_message(current_price: float, seven_day_average: float):
+    if current_price < seven_day_average:
+        return "Buy now — below weekly average", "green"
+    elif current_price > seven_day_average:
+        return "Wait — prices are above weekly average", "red"
+    else:
+        return "Average price today", "yellow"
+
 def build_summary() -> GasSummary:
     rows = get_last_seven_days()
     if not rows:
-        raise HTTPException (status_code=404, detail="No Toronto gas data found.")
+        raise HTTPException(status_code=404, detail="No Toronto gas data found.")
+
     latest = rows[-1]
     current_price = float(latest["price_cents"])
 
     seven_day_history = [
-        DailyGas(dateLabel=row["date_label"], priceCents=float(row["price_cents"]))
+        DailyGas(
+            dateLabel=row["date_label"],
+            price=float(row["price_cents"])
+        )
         for row in rows
     ]
 
-    seven_day_average = sum(point.priceCents for point in seven_day_history) / len(seven_day_history)
-    buy_message, background = buy_message(current_price, seven_day_average)
+    seven_day_average = sum(point.price for point in seven_day_history) / len(seven_day_history)
+    message, background = get_buy_message(current_price, seven_day_average)
 
     tomorrow_predicted = latest["predicted_tomorrow_cents"]
     if tomorrow_predicted is None:
         tomorrow_predicted = current_price
 
     return GasSummary(
-        currentPriceCents=round(current_price, 1),
-        tomorrowPredictedPriceCents=round(float(tomorrow_predicted), 1),
-        updatedAt=str(latest["scraped_at"]),
+        currentPrice=round(current_price, 1),
+        tomorrowPredictedPrice=round(float(tomorrow_predicted), 1),
+        updateAt=str(latest["scraped_at"]),
         sevenDayHistory=seven_day_history,
-        buyMessage=buy_message,
+        buyMessage=message,
         background=background,
         source=CITYNEWS_URL,
     )
