@@ -1,8 +1,8 @@
 <div align="center">
 
-# ⛽ PumpScout
+#PumpScout
 
-**Toronto gas price tracker — live prices, tomorrow's prediction, and a 7-day history, right on your iPhone.**
+**Toronto gas price tracker — live prices, tomorrow's prediction, and a 7-day history, on your iPhone.**
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111+-009688?style=flat-square&logo=fastapi&logoColor=white)
