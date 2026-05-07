@@ -4,7 +4,6 @@
 
 </div>
 
-## PumpScout
 PumpScout is a Toronto GTA gas price tracker made up of two parts:
 - A **Python / FastAPI backend** that scrapes live gas price data from [CityNews Toronto](https://toronto.citynews.ca/toronto-gta-gas-prices/), stores it in a local SQLite database, and serves it through a clean REST API.
 - A **native iOS app (Swift)** that calls the backend and displays the current price, tomorrow's predicted price, a buy/don't-buy recommendation, and a 7-day price history.
