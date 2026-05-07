@@ -152,3 +152,8 @@ Gas prices are scraped from **[CityNews Toronto — GTA Gas Prices](https://toro
 ## License
 
 MIT
+
+---
+## To Do:
+- Make a website to display the information?
+- Make same application for android?
